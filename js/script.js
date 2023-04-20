@@ -1,5 +1,6 @@
 import { createCategory } from './components/createCategory.js';
 import { createEditCategory } from './components/createEditCategory.js';
+import { createPairs } from './components/createPairs.js';
 import { createHeader } from './components/createHeader.js';
 import { createElement } from './helper/createElement.js';
 import { fetchCards, fetchCategories } from './service/api.service.js';
@@ -11,15 +12,17 @@ const initApp = async () => {
   const headerObj = createHeader(headerParent);
   const categoryObj = createCategory(app);
   const editCategoryObj = createEditCategory(app);
+  const pairsObj = createPairs(app);
 
   const allSectionUnmount = () => {
-    [categoryObj, editCategoryObj].forEach(obj => obj.unmount());
+    [categoryObj, editCategoryObj, pairsObj].forEach(obj => obj.unmount());
   };
 
   const renderIndex = async e => {
     e?.preventDefault();
     allSectionUnmount();
     const categories = await fetchCategories();
+    headerObj.updateHeaderTitle('Категории');
 
     if (categories.error) {
       const errorText = createElement('p', {
@@ -48,11 +51,27 @@ const initApp = async () => {
     if (target.closest('.category__edit')) {
       const dataCards = await fetchCards(categoryItem.dataset.id);
       allSectionUnmount();
-      headerObj.updateHeaderTitle('Редактирование');
+      headerObj.updateHeaderTitle(
+        `Редактирование категории "${dataCards.title}"`,
+      );
       editCategoryObj.mount(dataCards);
       return;
     }
+
+    if (target.closest('.category__del')) {
+      console.log('Удалить');
+      return;
+    }
+
+    if (categoryItem) {
+      const dataCards = await fetchCards(categoryItem.dataset.id);
+      allSectionUnmount();
+      headerObj.updateHeaderTitle(dataCards.title);
+      pairsObj.mount(dataCards);
+    }
   });
+
+  pairsObj.buttonReturn.addEventListener('click', renderIndex);
 };
 
 initApp();
