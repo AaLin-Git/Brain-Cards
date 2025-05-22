@@ -47,7 +47,7 @@ export const createPairs = app => {
 
         if (buttonCard.index === dataCards.length) {
           front.textContent = 'the end';
-          showAlert('Вы прошли все карточки', 2000);
+          showAlert('You have completed all the cards.', 2000);
 
           setTimeout(() => {
             buttonReturn.click();

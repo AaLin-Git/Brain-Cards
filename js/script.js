@@ -34,9 +34,9 @@ const initApp = async () => {
       return;
     }
 
-    showAlert(`Категория ${data.title} была обновлена`);
+    showAlert(`Category ${data.title} has been updated`);
     allSectionUnmount();
-    headerObj.updateHeaderTitle('Категории');
+    headerObj.updateHeaderTitle('Categories');
     categoryObj.mount(dataCategories);
   };
 
@@ -52,9 +52,9 @@ const initApp = async () => {
       return;
     }
 
-    showAlert(`Новая категория ${data.title} была добавлена`);
+    showAlert(`New category ${data.title} was added`);
     allSectionUnmount();
-    headerObj.updateHeaderTitle('Категории');
+    headerObj.updateHeaderTitle('Categories');
     categoryObj.mount(dataCategories);
   };
 
@@ -62,7 +62,7 @@ const initApp = async () => {
     e?.preventDefault();
     allSectionUnmount();
     const categories = await fetchCategories();
-    headerObj.updateHeaderTitle('Категории');
+    headerObj.updateHeaderTitle('Categories');
 
     if (categories.error) {
       const errorText = createElement('p', {
@@ -81,7 +81,7 @@ const initApp = async () => {
 
   headerObj.headerBtn.addEventListener('click', () => {
     allSectionUnmount();
-    headerObj.updateHeaderTitle('Новая категория');
+    headerObj.updateHeaderTitle('New category');
     editCategoryObj.mount();
     editCategoryObj.btnSave.addEventListener('click', postHandler);
     editCategoryObj.btnSave.removeEventListener('click', patchHandler);
@@ -94,7 +94,7 @@ const initApp = async () => {
       const dataCards = await fetchCards(categoryItem.dataset.id);
       allSectionUnmount();
       headerObj.updateHeaderTitle(
-        `Редактирование категории "${dataCards.title}"`,
+        `Editing a category "${dataCards.title}"`,
       );
       editCategoryObj.mount(dataCards);
       editCategoryObj.btnSave.addEventListener('click', patchHandler);
@@ -103,7 +103,7 @@ const initApp = async () => {
     }
 
     if (target.closest('.category__del')) {
-      if (confirm('Вы уверены, что хотите удалить категорию?')) {
+      if (confirm('Are you sure you want to delete the category?')) {
         const result = fetchDeleteCategory(categoryItem.dataset.id);
 
         if (result.error) {
@@ -111,7 +111,7 @@ const initApp = async () => {
           return;
         }
 
-        showAlert('Категория удалена');
+        showAlert('Category removed');
         categoryItem.remove();
       }
       return;
