@@ -43,12 +43,12 @@ export const createCategory = app => {
 
     const btnEdit = createElement('button', {
       className: 'category__btn category__edit',
-      ariaLabel: 'редактировать',
+      ariaLabel: 'edit',
     });
 
     const btnDel = createElement('button', {
       className: 'category__btn category__del',
-      ariaLabel: 'удалить',
+      ariaLabel: 'delete',
     });
 
     item.append(btnCard, btnEdit, btnDel);
