@@ -13,7 +13,7 @@ export const createPairs = app => {
 
   const buttonReturn = createElement('button', {
     className: 'card__return',
-    ariaLabel: 'Возврат к категориям',
+    ariaLabel: 'Back to categories',
   });
 
   const buttonCard = createElement('button', {

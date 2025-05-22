@@ -31,7 +31,7 @@ export const createCategory = app => {
 
     const titleText = createElement('span', {
       className: 'category__title',
-      textContent: declOfNum(data.length, ['пара', 'пары', 'пар']),
+      textContent: declOfNum(data.length, ['pair', 'pairs', 'pairs']),
     });
 
     const countPairs = createElement('span', {

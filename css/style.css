@@ -250,7 +250,7 @@ p {
 }
 
 .card__return:after {
-  content: "назад";
+  content: "back";
   position: absolute;
   bottom: -18px;
   right: -100%;
