@@ -31,7 +31,7 @@ export const createCategory = app => {
 
     const titleText = createElement('span', {
       className: 'category__title',
-      textContent: declOfNum(data.length, ['пара', 'пары', 'пар']),
+      textContent: declOfNum(data.length, ['pair', 'pairs', 'pairs']),
     });
 
     const countPairs = createElement('span', {
@@ -43,12 +43,12 @@ export const createCategory = app => {
 
     const btnEdit = createElement('button', {
       className: 'category__btn category__edit',
-      ariaLabel: 'редактировать',
+      ariaLabel: 'edit',
     });
 
     const btnDel = createElement('button', {
       className: 'category__btn category__del',
-      ariaLabel: 'удалить',
+      ariaLabel: 'delete',
     });
 
     item.append(btnCard, btnEdit, btnDel);
